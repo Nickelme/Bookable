@@ -4,7 +4,7 @@ const apiRoutes = require('./Routes');
 const mongoose = require('mongoose');
 const useragent = require('express-useragent');
 const helmet = require('helmet');
-
+const haManager = require('./Services/HomeAssistant/HomeAssistantManager');
 
 const PORT = process.env.PORT || 5001;
 const HOST = process.env.BIND_ADDRESS || '127.0.0.1';
@@ -18,7 +18,10 @@ mongoose
         DBURI,
         { useNewUrlParser: true, useUnifiedTopology: true }
     )
-    .then(() => console.log('MongoDB Connected'))
+    .then(() => {
+        console.log('MongoDB Connected');
+        haManager.startService();
+    })
     .catch(err => console.log(err));
 
 // App

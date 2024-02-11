@@ -18,7 +18,6 @@ checkToken();
 
 module.exports = {
     generateToken(userid){
-        checkToken();
         return jwt.sign({"userid": userid}, process.env.TOKEN_SECRET, {"expiresIn": "24h"})
     },
 
@@ -27,8 +26,6 @@ module.exports = {
         const token = authHeader && authHeader.split(' ')[1]
 
         if (token == null) return res.sendStatus(401);
-
-        if (token == null) return res.sendStatus(401)
 
         jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
             console.log(err)

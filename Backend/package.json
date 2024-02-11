@@ -12,7 +12,8 @@
 		"express-useragent": "^1.0.15",
 		"home-assistant-js-websocket": "^9.1.0",
 		"jsonwebtoken": "^9.0.2",
-		"dotenv": "^16.4.1"
+		"dotenv": "^16.4.1",
+		"ws": "^8.16.0"
 	},
 	"devDependencies": {
 		"nodemon": "^3.0.3"

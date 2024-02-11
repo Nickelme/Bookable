@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserSchema = new mongoose.Schema({
+const SiteSchema = new mongoose.Schema({
     siteName: {
         type: String,
         required: true
@@ -16,52 +16,52 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
 
-    haLongLivedtoken: {
+    haLongLivedToken: {
         type: String,
         required: true,
     },
 
-    rooms: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Room",
-        validate: {
-            validator: async function (v) {
-                try {
-                    let roomCount = await mongoose.model('Room').countDocuments({ _id: v });
-                    if (roomCount > 0) return true;
-                    return false;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            },
-            message: "Could not find Room"
-        }
-    }],
+    // rooms: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Room",
+    //     validate: {
+    //         validator: async function (v) {
+    //             try {
+    //                 let roomCount = await mongoose.model('Room').countDocuments({ _id: v });
+    //                 if (roomCount > 0) return true;
+    //                 return false;
+    //             } catch (e) {
+    //                 console.log(e);
+    //                 return false;
+    //             }
+    //         },
+    //         message: "Could not find Room"
+    //     }
+    // }],
 
-    globalLocks: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "LockCode",
-        validate: {
-            validator: async function (v) {
-                try {
-                    let roomCount = await mongoose.model('Room').countDocuments({ _id: v });
-                    if (roomCount > 0) return true;
-                    return false;
-                } catch (e) {
-                    console.log(e);
-                    return false;
-                }
-            },
-            message: "Could not find Room"
-        }
-    }],
+    // globalLocks: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Lock",
+    //     validate: {
+    //         validator: async function (v) {
+    //             try {
+    //                 let roomCount = await mongoose.model('Lock').countDocuments({ _id: v });
+    //                 if (roomCount > 0) return true;
+    //                 return false;
+    //             } catch (e) {
+    //                 console.log(e);
+    //                 return false;
+    //             }
+    //         },
+    //         message: "Could not lock"
+    //     }
+    // }],
 
     
 
     
 }, { timestamps: true });
 
-const User = mongoose.model('User', UserSchema);
+const Site = mongoose.model('Site', SiteSchema);
 
-module.exports = User;
+module.exports = Site;
