@@ -2,11 +2,15 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import { RouterLink, RouterView, useRouter, useRoute } from "vue-router";
 import navbar from "./components/nav/navbar.vue";
+import { useUserStore } from "./stores/user";
+
+
+const userStore = useUserStore();
 </script>
 
 <template>
 	<div>
-		<navbar></navbar>
+		<navbar v-if="userStore.isLoggedIn"></navbar>
 		<div class="container">
 			<RouterView v-slot="{ Component }">
 				<transition name="slide-fade" mode="out-in">

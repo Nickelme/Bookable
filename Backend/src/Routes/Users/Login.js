@@ -33,8 +33,8 @@ router.post("/login", async (req, res) => {
 
         bcrypt.compare(params.password, user.password).then(async isCorrect => {
             if (isCorrect) {
-                var keys = jwtHelper.generateToken(user._id);
-                res.status(200).json({ "success": true, "key": keys });
+                var key = jwtHelper.generateToken(user._id);
+                res.status(200).json({ "success": true, "accessToken": key });
             } else {
                 errors.push({ msg: "The Email or Password is invalid" });
                 res.status(400).json({ "success": false, "errors": errors })
@@ -43,5 +43,9 @@ router.post("/login", async (req, res) => {
     });
 });
 
+router.get("/me", jwtHelper.authenticateToken, async (req, res)=>{
+    const {firstName, lastName} = await User.findById(req.user.userid);
+    res.status(200).json({ "success": true, "user": { firstName, lastName } });
+})
 
 module.exports = router;
