@@ -34,5 +34,12 @@ export const useSiteStore = defineStore('site', () => {
         getSites();
     }
 
-    return {sites, activeSite}
+    function updateSite(siteId, siteObj){
+        (async ()=>{
+            const response = await axios.patch("/api/sites/" + siteId, siteObj, { headers: { Authorization: `Bearer ${accessToken.value}` } });
+            getSites();
+        })();
+    }
+
+    return {sites, activeSite, getSites, updateSite}
 });

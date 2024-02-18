@@ -11,15 +11,42 @@ const SiteSchema = new mongoose.Schema({
         required: true,
     },
 
+    usesHomeAssistant: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+
     haUrl: {
         type: String,
-        required: true,
+        required: false,
     },
 
     haLongLivedToken: {
         type: String,
-        required: true,
+        required: false,
     },
+
+    usesUnifi: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+
+    unifiUrl: {
+        type: String,
+        required: false,
+    },
+
+    unifiUsername: {
+        type: String,
+        required: false
+    },
+
+    unifiPassword: {
+        type: String,
+        required: false
+    }
 
     // rooms: [{
     //     type: mongoose.Schema.Types.ObjectId,

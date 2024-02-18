@@ -4,7 +4,7 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --host",
 		"build": "vite build",
 		"preview": "vite preview"
 	},
@@ -14,7 +14,8 @@
 		"pinia": "^2.1.7",
 		"vue": "^3.3.11",
 		"vue-router": "^4.2.5",
-		"axios": "^1.6.7"
+		"axios": "^1.6.7",
+		"bootstrap-icons-vue": "^1.11.3"
 	},
 	"devDependencies": {
 		"@vitejs/plugin-vue": "^4.5.2",

@@ -2,89 +2,75 @@
 import { useUserStore } from "../../stores/user";
 import { useSiteStore } from "../../stores/site";
 
+import { BIconList } from "bootstrap-icons-vue";
+
 const userStore = useUserStore();
 const siteStore = useSiteStore();
 </script>
 
 <template>
-	<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
 		<div class="container-fluid">
-			<div
-				class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2"
+			<a class="navbar-brand" href="#">Bookable</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarText"
+				aria-controls="navbarText"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
 			>
-				<ul class="navbar-nav me-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Home</a>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<router-link class="nav-link active" aria-current="page" to="/">Dashboard</router-link>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Rooms</a>
 					</li>
 				</ul>
-			</div>
-			<div class="mx-auto order-0">
-				<a class="navbar-brand mx-auto" href="#">Bookable</a>
-				<button
-					class="navbar-toggler"
-					type="button"
-					data-bs-toggle="collapse"
-					data-bs-target=".dual-collapse2"
-				>
-					<span class="navbar-toggler-icon"></span>
-				</button>
-			</div>
-			<div class="navbar-collapse collapse w-100 order-3 me-5 dual-collapse2">
-				<ul class="navbar-nav ms-auto">
+				<ul class="navbar-nav">
 					<li class="nav-item dropdown">
 						<a
 							class="nav-link dropdown-toggle"
 							href="#"
-							id="navbarScrollingDropdown"
 							role="button"
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
-							Sites
+                            Sites
 						</a>
-						<ul
-							class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarScrollingDropdown"
-						>
-							<li v-for="site in siteStore.sites" v-bind:key="site._id">
+						<ul class="dropdown-menu" style="left: -40px">
+							<li>
 								<a
 									class="dropdown-item"
-									:class="{ active: site._id == siteStore.activeSite }"
-									href="#"
+									v-for="site in siteStore.sites"
+									:key="site._id"
+									:class="{'active': siteStore.activeSite == site._id}"
 									>{{ site.siteName }}</a
 								>
 							</li>
-							<li>
-								<hr class="dropdown-divider" />
-							</li>
-							<li><a class="dropdown-item" href="#">Manage Sites</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><router-link class="dropdown-item" to="/sites">Manage Sites</router-link></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown">
 						<a
 							class="nav-link dropdown-toggle"
 							href="#"
-							id="navbarScrollingDropdown"
 							role="button"
 							data-bs-toggle="dropdown"
 							aria-expanded="false"
 						>
 							{{ userStore.userInfo.firstName }}
 						</a>
-						<ul
-							class="dropdown-menu dropdown-menu-right"
-							aria-labelledby="navbarScrollingDropdown"
-						>
-							<li><a class="dropdown-item" href="#">Item</a></li>
-							<li><a class="dropdown-item" href="#">Item</a></li>
-							<li>
-								<hr class="dropdown-divider" />
-							</li>
-							<li>
-								<a class="dropdown-item" href="#" @click="userStore.logout()"
-									>Logout</a
-								>
-							</li>
+						<ul class="dropdown-menu" style="left: -120px">
+							<li><a class="dropdown-item" href="#">Profile</a></li>
+							<li><hr class="dropdown-divider" /></li>
+							<li><a class="dropdown-item" @click="userStore.logout()">Logout</a></li>
 						</ul>
 					</li>
 				</ul>
