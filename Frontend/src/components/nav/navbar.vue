@@ -29,7 +29,7 @@ const siteStore = useSiteStore();
 						<router-link class="nav-link active" aria-current="page" to="/">Dashboard</router-link>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Rooms</a>
+						<router-link class="nav-link" href="#" to="/rooms">Rooms</router-link>
 					</li>
 				</ul>
 				<ul class="navbar-nav">

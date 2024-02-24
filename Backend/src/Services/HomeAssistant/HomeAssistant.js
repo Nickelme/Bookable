@@ -20,6 +20,7 @@ class HomeAssistant {
                 this.isConnected = true;
                 console.log(`Success: HA Connected to ${this.haUrl}`);
                 haConnector.subscribeEntities(this.connection, this.entityUpdate);
+                this.getEntitiesList();
             } catch (err) {
                 console.log(err);
             }
@@ -35,7 +36,19 @@ class HomeAssistant {
     }
 
     entityUpdate(entities) {
-        //console.log(entities);
+        console.log(entities);
+    }
+
+    async getDeviceList(){
+        const deviceList = await this.connection.sendMessagePromise({type: "config/device_registry/list"});
+        console.log(deviceList);
+        return deviceList;
+    }
+
+    async getEntitiesList(){
+        const entityList = await this.connection.sendMessagePromise({type: "config/entity_registry/list"});
+        console.log(entityList);
+        return entityList;
     }
 
 }

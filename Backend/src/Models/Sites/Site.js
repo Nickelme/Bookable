@@ -46,25 +46,25 @@ const SiteSchema = new mongoose.Schema({
     unifiPassword: {
         type: String,
         required: false
-    }
+    },
 
-    // rooms: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Room",
-    //     validate: {
-    //         validator: async function (v) {
-    //             try {
-    //                 let roomCount = await mongoose.model('Room').countDocuments({ _id: v });
-    //                 if (roomCount > 0) return true;
-    //                 return false;
-    //             } catch (e) {
-    //                 console.log(e);
-    //                 return false;
-    //             }
-    //         },
-    //         message: "Could not find Room"
-    //     }
-    // }],
+    rooms: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Room",
+        validate: {
+            validator: async function (v) {
+                try {
+                    let roomCount = await mongoose.model('Room').countDocuments({ _id: v });
+                    if (roomCount > 0) return true;
+                    return false;
+                } catch (e) {
+                    console.log(e);
+                    return false;
+                }
+            },
+            message: "Could not find Room"
+        }
+    }],
 
     // globalLocks: [{
     //     type: mongoose.Schema.Types.ObjectId,

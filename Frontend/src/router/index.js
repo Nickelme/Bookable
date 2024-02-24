@@ -1,8 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import roomList from '../views/room-list.vue'
 import loginPage from '../views/login.vue'
 import siteList from '../views/siteList.vue'
 import siteSettings from "../views/siteSettings.vue"
+import roomSettings from "../views/rooms/roomSettings.vue"
+import roomList from "../views/rooms/roomList.vue"
+import dashboard from "../views/dashboard.vue"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,7 +12,7 @@ const router = createRouter({
         {
             path: '/',
             name: 'RoomList',
-            component: roomList,
+            component: dashboard,
         },
         {
             path: '/login',
@@ -26,6 +28,15 @@ const router = createRouter({
             path: '/site-settings/:id',
             name: 'Site Settings',
             component: siteSettings
+        },
+        {
+            path: '/rooms',
+            name: 'Rooms',
+            component: roomList
+        }, {
+            path: '/room-settings/:id',
+            name: 'Room Settings',
+            component: roomSettings
         }
     ]
 })
